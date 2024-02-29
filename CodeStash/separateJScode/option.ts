@@ -22,7 +22,7 @@
 * @param parent
 * @constructor
 */
-function Options(parent)
+const Options=(parent)=>
 {
  this.initialize(parent);
 

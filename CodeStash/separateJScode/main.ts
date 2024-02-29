@@ -4,37 +4,36 @@ var default_size = 40;
 var move_counter = 0;
 
 //入力された文字列からコマンドイラスト(svg)を作成
-function create()
-{
-    //表示するコマンドイラストの数
- move_counter = 0;//初期化
+const create=()=>{
+        //表示するコマンドイラストの数
+     move_counter = 0;//初期化
 
-//入力された文字から空白を削除して小文字に変換
- input = $('#input_text').val();
- input = input.replace(/\s/g, "").toLowerCase();
+    //入力された文字から空白を削除して小文字に変換
+     input = $('#input_text').val();
+     input = input.replace(/\s/g, "").toLowerCase();
 
- //文字列から出力されるsvgコード
- var result_text = ''
- //新規のRoot object
- var root = new Root();
+     //文字列から出力されるsvgコード
+     var result_text = ''
+     //新規のRoot object
+     var root = new Root();
 
- try
- {
-     //inputの値をroot.parse()メソッドに渡して解析し、root.update_layout()メソッドでレイアウトを更新
-  root.parse(input);
-  root.update_layout();
-  //更新した内容をoutputに渡す
-  output(root);
- }
- catch(exc)
- {
-     //エラー発生
-  output_error(root.create_exception_string(exc) );
-  //throw exc; // デバッグ用
- }
+     try
+     {
+         //inputの値をroot.parse()メソッドに渡して解析し、root.update_layout()メソッドでレイアウトを更新
+      root.parse(input);
+      root.update_layout();
+      //更新した内容をoutputに渡す
+      output(root);
+     }
+     catch(exc)
+     {
+         //エラー発生
+      output_error(root.create_exception_string(exc) );
+      //throw exc; // デバッグ用
+     }
 }
 
-function output(root)
+const output=(root)=>
 {
     //引数rootをstringに変換
  var result_text = root.to_string();
@@ -68,7 +67,7 @@ function output(root)
   * この関数は、エラーメッセージを表示するためのものであり、エラーメッセージの表示とそれに関連する要素のクリアを行います。
 * @param result_text
 */
-function output_error(result_text)
+const output_error=(result_text)=>
 {
  $('#output_image').html(result_text);
  $('#output_source').val('');
@@ -90,7 +89,7 @@ function output_error(result_text)
 * @param dy
 * @param arrowhead_length
 */
-function calc_arrow_target_point(sx, sy, dx, dy, arrowhead_length)
+const calc_arrow_target_point=(sx, sy, dx, dy, arrowhead_length)=>
 {
  var th = Math.atan2(dy - sy, dx - sx); // sx < dx という仕様なのでNaNは考えなくても良い
  var l = Math.sqrt( (sx - dx) * (sx - dx) + (sy - dy) * (sy - dy) ) - arrowhead_length;
@@ -106,7 +105,7 @@ function calc_arrow_target_point(sx, sy, dx, dy, arrowhead_length)
 * @param text
 * @param pattern
 */
-function starts_with(text, pattern)
+const starts_with=(text, pattern)=>
 {
  return text.lastIndexOf(pattern, 0) === 0;
 }
@@ -123,7 +122,7 @@ function starts_with(text, pattern)
 * @param keyword
 * @param new_string
 */
-function replace(input, keyword, new_string)
+const replace=(input, keyword, new_string)=>
 {
  var regex = new RegExp("~" + keyword + "~", "g");
  return input.replace(regex, new_string);
@@ -144,7 +143,7 @@ function replace(input, keyword, new_string)
  * HTMLエンティティに置き換えることで、ブラウザがそれらをタグとして解釈せずにそのまま表示します。
 * @param input
 */
-function replace_angle_brackets(input)
+const replace_angle_brackets=(input)=>
 {
  var ro = /\</g;
  var rc = /\>/g;
@@ -163,7 +162,7 @@ function replace_angle_brackets(input)
  * 4. 四捨五入された結果が、新しい数値として返されます。
 * @param val
 */
-function round2(val)
+const round2=(val)=>
 {
  return Math.round(val * 100) / 100;
 }
@@ -197,7 +196,7 @@ function round2(val)
  * この関数は、矢印のノードの配列を整理して、連続するy座標が同じ場合にx座標を更新します。これにより、不要なノードが除去され、よりシンプルな表現が得られます。
 * @param nodes
 */
-function tidy_arrow_nodes(nodes)
+const tidy_arrow_nodes=(nodes)=>
 {
  var len = nodes.length;
  if(len < 4)

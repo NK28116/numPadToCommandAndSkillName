@@ -26,7 +26,7 @@
 * @param item
 * @constructor
 */
-function Leaf(parent, item)
+const Leaf=(parent, item)=>
 {
  this.initialize(parent);
 
