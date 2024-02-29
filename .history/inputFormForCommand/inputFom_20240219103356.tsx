@@ -1,0 +1,9 @@
+//テンキー表記入力フォーム
+//ここで入力された値inputCommandをコマンド変換に渡します
+//にゅうｙ録フォーム＋変換ボタン
+import {useForm}
+
+type inputForm={
+    input:string
+}
+
