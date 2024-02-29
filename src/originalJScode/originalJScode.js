@@ -1,7 +1,7 @@
 //参考元のブログからJSだけコピペ
 //ここからTS+NEXTにしていきたい
 //分析のためにこれは残しておく
-// main.js
+// main.ts
 
 var default_size = 40;
 var move_counter = 0;
@@ -803,7 +803,7 @@ var items_array = [
 var items = {};
 for(var i = 0; i < items_array.length; i++)
  items[items_array[i].id] = items_array[i];
-// css_classes.js
+// css_classes.ts
 
 var css_classes = {
   "arrow" : ".arrow{fill:none;stroke:black;stroke-width:6;stroke-linejoin:round;marker-end:url(#arrow-end);}\n",
@@ -820,7 +820,7 @@ var css_classes = {
   "already" : ".already{opacity:0.4;}\n"
 };
 
-// text_resource.js
+// text_resource.ts
 
 var doc_prefix =
   '<?xml version="1.0" ?>\n'
@@ -851,7 +851,7 @@ var defs_allow_marker =
    +'\t\t\t<path d="M 0 0 L 10 5 L 0 10 z" fill="black" stroke="none"/>\n'
   +'\t\t</marker>\n';
 
-// node.js
+// node.ts
 
 function Node()
 {
@@ -953,7 +953,7 @@ Node.prototype.initialize = function(parent)
 
 //var debug_id_count = 0;
 
-// line.js
+// line.ts
 
 function Line(parent)
 {
@@ -1185,7 +1185,7 @@ Move.prototype.create_arrow_latter_half_nodes = function(first_half_nodes)
  return res;
 };
 
-// leaf.js
+// leaf.ts
 
 function Leaf(parent, item)
 {
@@ -1562,7 +1562,7 @@ Options.prototype.insert_joint = function(is_first_of_all, is_last_of_all)
   this.children[i].insert_joint(is_first_of_all, is_last_of_all);
 }
 
-// joint.js
+// joint.ts
 
 function Joint(parent)
 {
