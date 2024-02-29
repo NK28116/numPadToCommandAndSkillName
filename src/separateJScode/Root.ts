@@ -1,3 +1,27 @@
+
+/**、SVG形式の画像を生成するためのメソッド
+  *
+  * - `parse`: 入力文字列を解析して、解析結果を生成します。`Parser` クラスのインスタンスを作成し、解析を実行します。
+  *
+  * - `register_defs_item`: 定義アイテムを登録します。アイテムが使用するCSSクラスや要素を登録し、必要に応じて再帰的に関連するアイテムを登録します。
+  *
+  * - `register_defs_move`: 移動アイテムを登録します。全く同じ移動がある場合は登録せずにtrueを返します。
+  *
+  * - `register_arrow_path_nodes`: 矢印のパスノードを登録します。
+  *
+  * - `to_string`: オブジェクトをSVG形式の文字列に変換します。定義要素や移動要素、矢印要素を含むSVG全体の文字列を生成します。
+  *
+  * - `arrows_to_string`: 矢印要素をSVG形式の文字列に変換します。
+  *
+  * - `update_layout`: レイアウトを更新します。子要素のレイアウトを更新し、グローバルな位置を計算します。
+  *
+  * - `create_arrows`: 矢印を作成します。
+  *
+  * - `insert_joint`: 関節を挿入します。
+  *
+  * - `create_exception_string`: 例外の文字列を生成します。
+* @constructor
+*/
 function Root()
 {
  this.initialize(null);

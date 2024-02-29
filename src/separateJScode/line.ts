@@ -1,5 +1,39 @@
 // line.js
-
+/**
+*
+  *
+  * ### line.js
+  *
+  * このファイルは、線（Line）ノードを定義しています。以下はその機能の要約です：
+  *
+  * - `Line(parent)`: 親ノードを指定して線ノードを初期化します。線ノードは複数の子要素を含みます。
+  *
+  * - `update_layout_with_relative_coordinate()`: 子要素のレイアウトを更新し、線ノードのサイズや位置を計算します。子要素の配置に応じて線の幅や高さが決定されます。
+  *
+  * - `create_arrows()`: 矢印の生成を行います。隣接する子要素間に矢印を生成するための情報を登録します。
+  *
+  * - `insert_joint(is_first_of_all, is_last_of_all)`: 関節（Joint）を挿入します。関節は複数の子要素の間に追加され、特定の条件下で挿入されます。
+  *
+  * ### move.js
+  *
+  * このファイルは、移動（Move）ノードを定義しています。以下はその機能の要約です：
+  *
+  * - `Move(parent)`: 親ノードを指定して移動ノードを初期化します。移動ノードは複数の子要素を含みます。
+  *
+  * - `finish_to_add()`: 移動ノードの追加が完了したときに呼び出されます。追加された子要素が特定の条件を満たさない場合にエラーメッセージをスローします。
+  *
+  * - `update_layout_with_relative_coordinate()`: 子要素のレイアウトを更新し、移動ノードのサイズや位置を計算します。
+  *
+  * - `to_string()`: 移動ノードを文字列に変換します。このメソッドは SVG フォーマットの要素を生成します。
+  *
+  * - `create_arrow_first_half_nodes()`: 矢印の前半部分のノードを生成します。
+  *
+  * - `create_arrow_latter_half_nodes(first_half_nodes)`: 矢印の後半部分のノードを生成します。
+  *
+  * これらのファイルは、グラフの要素を定義し、それらの要素に関する様々な操作を提供します。
+* @param parent
+* @constructor
+*/
 function Line(parent)
 {
  this.initialize(parent);

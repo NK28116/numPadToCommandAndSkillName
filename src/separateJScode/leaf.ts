@@ -1,5 +1,31 @@
 // leaf.js
+/**
 
+  *
+  * ### leaf.js
+  *
+、葉（Leaf）ノードを定義
+  *
+  * - `Leaf(parent, item)`: 親ノードとアイテムを指定して葉ノードを初期化します。葉ノードは特定のアイテムに関連付けられます。
+  *
+  * - `to_string()`: 葉ノードを文字列に変換します。このメソッドは SVG フォーマットの要素を生成します。
+  *
+  * ### loop.js
+  * 、ループ（Loop）ノードを定義：
+  *
+  * - `Loop(parent)`: 親ノードを指定してループノードを初期化します。ループノードは一連の行（Line）を含み、繰り返し回数などのプロパティも持ちます。
+  *
+  * - `register_defs()`: ループノードの定義を登録します。ループ内で使用されるアイテムの定義が登録されます。
+  *
+  * - `finish_to_add()`: ループノードの追加が完了したときに呼び出されます。このメソッドでは、追加された子要素の数やその他の条件をチェックし、適切なエラーメッセージをスローします。
+  *
+  * - `to_string()`: ループノードを文字列に変換します。このメソッドは SVG フォーマットの要素を生成します。
+  *
+  * これらのファイルは、SVG フォーマットで表現されるグラフ要素を定義し、それらを文字列に変換する機能を提供します。
+* @param parent
+* @param item
+* @constructor
+*/
 function Leaf(parent, item)
 {
  this.initialize(parent);
@@ -209,6 +235,7 @@ Loop.prototype.create_arrow_latter_half_nodes = function(first_half_nodes)
 
  if(!(node instanceof Move) )
   throw '繰り返し要素の中に想定外のノード ... ' + Object.prototype.toString.apply(node);
+
 
  return node.create_arrow_latter_half_nodes(first_half_nodes);
 };

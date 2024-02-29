@@ -1,5 +1,18 @@
 // joint.js
-
+/**、関節を表現するノードを定義します。以下はその概要です：
+  *
+  * - `initialize`: 親ノードを初期化します。
+  *
+  * - `to_string`: 関節をSVG形式の文字列に変換します。`<use>` 要素を使用して、定義された `joint` アイテムを参照します。
+  *
+  * - `create_arrow_first_half_nodes`: 矢印の前半部分のノードを作成します。関節の中心を起点とします。
+  *
+  * - `create_arrow_latter_half_nodes`: 矢印の後半部分のノードを作成します。前半部分のノードから関節までの線分を計算し、矢印の先端を求めます。
+  *
+  * このクラスは、関節を表現するノードを定義し、矢印の描画に必要な情報を提供します。
+* @param parent
+* @constructor
+*/
 function Joint(parent)
 {
  this.initialize(parent);

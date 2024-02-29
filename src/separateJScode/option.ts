@@ -1,5 +1,27 @@
 // options.js
-
+/**
+* オプションを表現するノードを定義
+  *
+  * - `initialize`: 親ノードを初期化します。
+  *
+  * - `create_next_line`: 新しい行（`Line`）を作成し、現在のオプションに追加します。追加された行は、現在のオプションの `current_line` プロパティに設定されます。
+  *
+  * - `finish_to_add`: オプションの追加が完了したときに呼び出されます。このメソッドでは、追加された子要素の数やその他の条件をチェックし、適切なエラーメッセージをスローします。
+  *
+  * - `update_layout_with_relative_coordinate`: 相対座標を使用してレイアウトを更新します。各子要素のレイアウトが更新され、オプション全体の幅と高さが計算されます。
+  *
+  * - `create_arrows`: 各子要素に対して矢印を作成します。
+  *
+  * - `create_arrow_first_half_nodes`: 矢印の前半部分のノードを作成します。各子要素の最後のノードからなる配列を返します。
+  *
+  * - `create_arrow_latter_half_nodes`: 矢印の後半部分のノードを作成します。前半部分のノードから計算された矢印の終点の座標を使用して、各子要素の矢印の後半部分のノードを作成します。
+  *
+  * - `insert_joint`: 各子要素に対して関節を挿入します。
+  *
+  * このファイルは、オプションを表現するノードの機能を提供しています。
+* @param parent
+* @constructor
+*/
 function Options(parent)
 {
  this.initialize(parent);

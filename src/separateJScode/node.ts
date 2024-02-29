@@ -1,5 +1,34 @@
 // node.js
-
+/**
+* `node.js` ファイルは、`Node` クラスを定義し、このクラスのメソッドやプロパティを提供します。以下はこのファイルの要約です：
+  *
+  * - `Node()`: `Node` クラスのコンストラクターです。各種プロパティを初期化します。
+  *
+  * - `add(child)`: 子ノードを追加します。追加された子ノードは `children` 配列に格納されます。
+  *
+  * - `finish_to_add()`: 子ノードの追加が完了したことをマークします。
+  *
+  * - `update_layout_with_relative_coordinate()`: 相対座標を使用してレイアウトを更新します。このメソッドは各サブクラスでオーバーライドされます。
+  *
+  * - `update_children_layout_with_relative_coordinate()`: 子ノードのレイアウトを更新します。
+  *
+  * - `create_arrows()`: 矢印を作成します。各サブクラスでオーバーライドされます。
+  *
+  * - `create_arrow_first_half_nodes()`: 矢印の前半部分のノードを作成します。各サブクラスでオーバーライドされます。
+  *
+  * - `create_arrow_latter_half_nodes(first_half_nodes)`: 矢印の後半部分のノードを作成します。各サブクラスでオーバーライドされます。
+  *
+  * - `insert_joint(is_first_of_all, is_last_of_all)`: 関節を挿入します。各サブクラスでオーバーライドされます。
+  *
+  * - `to_string()`: オブジェクトを文字列に変換します。各サブクラスでオーバーライドされます。
+  *
+  * - `calc_global_position(x, y)`: グローバル座標を計算します。
+  *
+  * - `initialize(parent)`: 初期化関数であり、各種プロパティを初期化します。
+  *
+  * このクラスは、グラフのノードや要素の基本的な振る舞いを提供します。サブクラスはこれらのメソッドをオーバーライドして特定の振る舞いを実装します。
+* @constructor
+*/
 function Node()
 {
 };
