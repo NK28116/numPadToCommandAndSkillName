@@ -3,36 +3,38 @@
 var default_size = 40;
 var move_counter = 0;
 
-//入力された文字列からコマンドイラスト(svg)を作成
-const create=()=>{
-        //表示するコマンドイラストの数
-     move_counter = 0;//初期化
+/**
+* 入力された文字列inputからsvgコード配列を作成
+* 例：{666}rp!-lklp-rklp-2rkrkを変換するとsvg[4]=[{},{},{},{}]になる
+* @param input
+*/
+const createImage = (input: string): string[] => {
 
-    //入力された文字から空白を削除して小文字に変換
-     input = $('#input_text').val();
-     input = input.replace(/\s/g, "").toLowerCase();
+    input = input.replace(/\s/g, "").toLowerCase();
+    const inputTextToSVG = input.split("-");
 
-     //文字列から出力されるsvgコード
-     var result_text = ''
-     //新規のRoot object
-     var root = new Root();
+    const svgArray: string[] = [];
 
-     try
-     {
-         //inputの値をroot.parse()メソッドに渡して解析し、root.update_layout()メソッドでレイアウトを更新
-      root.parse(input);
-      root.update_layout();
-      //更新した内容をoutputに渡す
-      output(root);
-     }
-     catch(exc)
-     {
-         //エラー発生
-      output_error(root.create_exception_string(exc) );
-      //throw exc; // デバッグ用
-     }
+    try {
+        // SVGの生成処理をここに記述
+
+            // 仮の例として、入力されたテキストをSVGに変換して配列に追加するとします
+            inputTextToSVG.forEach(text => {
+                const svgString = `<svg width="100" height="100"><text x="10" y="50">${text}</text></svg>`;
+                svgArray.push(svgString);
+            });
+
+    } catch (exc) {
+        console.error(exc);
+    }
+    return svgArray;
 }
 
+
+/**
+*svgをhtml中に使えるようにする
+* @param root
+*/
 const output=(root)=>
 {
     //引数rootをstringに変換
