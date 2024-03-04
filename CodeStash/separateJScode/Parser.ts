@@ -27,7 +27,7 @@
 * @param root
 * @constructor
 */
-function Parser(input, root)
+const Parser=(input, root)=>
 {
  this.mode_list = {
    "expect_node" : {

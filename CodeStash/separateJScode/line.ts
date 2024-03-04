@@ -34,7 +34,7 @@
 * @param parent
 * @constructor
 */
-function Line(parent)
+const Line=(parent)=>
 {
  this.initialize(parent);
 

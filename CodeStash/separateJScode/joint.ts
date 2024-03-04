@@ -13,7 +13,7 @@
 * @param parent
 * @constructor
 */
-function Joint(parent)
+const Joint=(parent)=>
 {
  this.initialize(parent);
 

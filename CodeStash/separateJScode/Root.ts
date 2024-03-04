@@ -22,7 +22,7 @@
   * - `create_exception_string`: 例外の文字列を生成します。
 * @constructor
 */
-function Root()
+const Root=()=>
 {
  this.initialize(null);
  this.use_css = {"arrow" : css_classes.arrow, "move" : css_classes.move};
