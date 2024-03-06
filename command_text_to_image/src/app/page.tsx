@@ -4,13 +4,27 @@ import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 type FormData = {
-  command: string
+    command: string
+}
+type textImage={
+    value:string
+    image:string
 }
 
 /**
-* 引数inputText:stringをstring[]にして
-* 各要素に対応するPNGを出力
+* 引数inputText:stringをstring[]にする
+* TODO:特定の日本語からもできるようにしたい
 * @param input
+*
+* const inputText="a--bc--cde-fghi--jk--l"
+* console.log(spiltInputArray(inputText))
+*  [
+*  {"value": "a","image": "/a.png" },
+*  {"value": "bc","image": "/bc.png"},
+*  {"value": "cde-fghi", "image": "/cde-fghi.png" },
+*  {"value": "jk","image": "/jk.png" },
+*  {"value": "l","image": "/l.png"}
+*  ]
 */
 const spiltInputArray = (inputText: string) => {
     return inputText.split("--").map((item) => {
@@ -23,15 +37,15 @@ const spiltInputArray = (inputText: string) => {
         return null; // エラー処理など
     });
 };
-
-const convertTextToImage = (inputText: string) => {
-    const inputArray = spiltInputArray(inputText);
-    return inputArray.map((item, index) => {
+/**
+*配列の各要素に対応する/$value.pngに変換する
+* @param arrayText spiltInputArray(inputText)
+*/
+const convertTextToImage = (arrayText: textImage[]) => {
+    return arrayText.map((item, index) => {
         if (item !== null) {
-            return {
-                value: item.value,
-                image: item.image
-            };
+            return
+                <img src={item.image}/>
         }
         return null; // エラー処理など
     });
@@ -40,14 +54,6 @@ const convertTextToImage = (inputText: string) => {
 export default function Page() {
     const router = useRouter()
     const { handleSubmit, register } = useForm<FormData>()
-
-
-    /**
-    * 文字変換ロジック
-    * 大文字から小文字へ
-    * TODO:日本語も
-    * @param data
-    */
 
     return (
         <>
@@ -60,18 +66,16 @@ export default function Page() {
                     <button
                         className="text-3xl font-semibold underline"
                         type="submit"
-
-                        >
-
+                    >
                         Convert
                     </button>
                 </div>
             </form>
             <div className="debug">
-                 <img src={`/a.png`}  />
-                 <div>
-                 {/*input={`${convertImageArray[0]}`}*/}
-                 </div>
+                <img src={`/a.png`}  />
+                <div>
+                    {/*input={`${convertImageArray[0]}`}*/}
+                </div>
             </div>
         </>
     )
