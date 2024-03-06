@@ -6,49 +6,55 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 type FormData = {
 command: string
 }
-/** Submit ボタンを押したときの処理 */
-const onSubmit: SubmitHandler<FormData> = (data) => {
-  // data には FormData 型の値が入っている
-    alert(JSON.stringify(data, null, 2))
+
+/**
+* 引数inputText:stringをstring[]に
+* @param input
+*/
+const convertInputString = (inputText: string) => {
+    return inputText.split("--").map((item) => ({ value: item }));
 }
 export default function Page() {
 
     const router = useRouter()
     const { handleSubmit, register } = useForm<FormData>()
+{/**
+ * 文字変換ロジック
+ * 大文字から小文字へ
+ * TODO:日本語も
+ * @param data
+ */
+}
+const onSubmit: SubmitHandler<FormData> = (data) => {
+    const inputArray = convertInputString(data.command); // フォームに入力された文字列を処理
+    const convertImageArray = inputArray.map((item, index) => {
+      if ('value' in item) {
+        return {
+          value: item.value,
+          image: `../${item.value}.png`
+        };
+      }
+      return null; // エラー処理など
+    });
+    console.log(convertImageArray); // フォームに入力された文字列に対応する画像の配列を表示
+  };
 
 return (
-    <>{/*
-        <button
-        type="button"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-4 rounded-full"
-        onClick={() => router.push('/day')}>
-        dayへ
-        </button>
-        <button
-        className="text-3xl font-bold underline"
-        onClick={() => router.push('/about')}>
-        aboutへ
-        </button>
-*/}
+  <>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="outline">
+          <div className="outline">
             <input
-            className="underline "
-                {...register('command')}
-                placeholder="Comamnd"
+              {...register('command')}
+              placeholder="Command"
             />
             <button
-                className="text-3xl font-semibold underline"
-                type="submit">
-                convert
+              className="text-3xl font-semibold underline"
+              type="submit">
+              Convert
             </button>
-            </div>
-
-            <div>
-            ImageArray
-            </div>
+          </div>
         </form>
-    </>
+      </>
     )
 
 }
