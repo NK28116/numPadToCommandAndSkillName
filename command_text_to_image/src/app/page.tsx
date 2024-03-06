@@ -1,7 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 type FormData = {
     command: string
@@ -27,29 +28,38 @@ type textImage={
 *  ]
 */
 const spiltInputArray = (inputText: string) => {
-    return inputText.split("--").map((item) => {
-        if (item.trim() !== "") {
-            return {
-                value: item.trim(),
-                image: `/${item.trim()}.png`
-            };
+    return inputText.split("--").map((item, index) => {
+        const trimmedItem = item.trim();
+            if (trimmedItem !== "") {
+                return {
+                    value: trimmedItem,
+                    image: `/${trimmedItem}.png`,
+                    key: index // 画像リスト内の各要素に一意のキーを追加する
+                    }
+                }
+                return null // エラー処理など
         }
-        return null; // エラー処理など
-    });
-};
+    )
+}
 /**
 *配列の各要素に対応する/$value.pngに変換する
 * @param arrayText spiltInputArray(inputText)
 */
 const convertTextToImage = (arrayText: textImage[]) => {
-    return arrayText.map((item, index) => {
-        if (item !== null) {
-            return
-                <img src={item.image}/>
-        }
-        return null; // エラー処理など
-    });
-};
+    return(
+        <>
+            {arrayText.map((item, index) => {
+                if (item !== null) {
+                    return <img key={index} src={item.image} alt={`Image ${index}`} />
+                } else {
+                    return null; // エラー処理など
+                }
+                })
+            }
+        </>
+    )
+}
+
 
 export default function Page() {
     const router = useRouter()
