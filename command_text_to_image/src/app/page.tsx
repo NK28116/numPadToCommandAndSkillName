@@ -60,7 +60,6 @@ const convertTextToImage = (arrayText: textImage[]) => {
     )
 }
 
-
 export default function Page() {
     const router = useRouter()
     const { handleSubmit, register } = useForm<FormData>()
@@ -81,6 +80,8 @@ export default function Page() {
                     </button>
                 </div>
             </form>
+            
+            {/**デバッグエリア */}
             <div className="debug">
                 <img src={`/a.png`}  />
                 <div>
