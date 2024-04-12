@@ -63,27 +63,28 @@ export default function Page() {
     );
   };
 
-  const [text, setText] = useState("text1");
 
-  const buttonClickedText = "clicked!";
-  const setClickedText = useState(buttonClickedText);
 
-  const handleConvertButtonClick = () => {
-    setText(buttonClickedText);
-  };
+const [command, setCommand] = useState("");
+const [imageURL, setImageURL] = useState("");
+ const handleConvertButtonClick = () => {
+     // ファイル名から画像のURLを生成する
+     const imageURL = `/${command}.png`; // ここでは仮に ".png" 拡張子を付けたとしています
+     setImageURL(imageURL);
+   };
 
   const handleClearButtonClick = () => {
-    setText("");
+    setImageURL("");
+    setCommand("")
   };
-
   return (
     <>
       <div //表示したいページ
         className="outline"
       >
         <input
-          defaultValue={"text1"}
-          onChange={(e) => setText(e.target.value)}
+          value={command}
+          onChange={(e) => setCommand(e.target.value)}
         />
 
         <button type="button" onClick={handleConvertButtonClick}>
@@ -92,12 +93,10 @@ export default function Page() {
         <button type="button" onClick={handleClearButtonClick}>
           テキストをクリア
         </button>
-      </div>
-
-      {/**デバッグエリア */}
-      <div className="debug">
-        <img src={`/a.png`} />
-        <div>inputText:{text}</div>
+{/* ファイル名が空でない場合にのみ画像を表示 */}
+        {imageURL && (
+          <img src={imageURL} alt="画像" />
+        )}
       </div>
     </>
   );
