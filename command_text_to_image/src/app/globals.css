@@ -13,15 +13,25 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+
+    --color-primary: #ff8438;
+    --color-primary-rgb: 56,128,255;
+    --color-primary-contrast: #ffffff;
+    --color-primary-contrast-rgb: 255,255,255;
+
+    --color-secondary: #3dc2ff;
+    --color-secondary-rgb: 61,194,255;
+    --color-secondary-contrast: #ffffff;
+    --color-secondary-contrast-rgb: 255,255,255;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--color-primary);
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      rgba(var(--color-primary-rgb))
     )
     rgb(var(--background-start-rgb));
     padding: 20px 20px 60px;
