@@ -63,7 +63,13 @@ export default function Page() {
     );
   };
 
-
+  /**
+   * 入力された文字列に特定の文字列があった場合その文字列の色を変換する
+   * @param arrayText spiltInputArray(inputText)
+   * 
+   * 
+   */
+  const changeStringColor=()=>{}
 
 const [command, setCommand] = useState("");
 const [imageURL, setImageURL] = useState("");

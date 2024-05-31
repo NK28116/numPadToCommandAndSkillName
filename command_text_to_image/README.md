@@ -1,3 +1,13 @@
+
+## 覚書
+- WSL2+Next+TypeScript+yarn+docker+Mysql+prisma
+  - WSL2:ubuntu
+  - docker:
+  - Next:http://localhost:3000
+  - prisma:sudo prisma studio
+  - 
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
