@@ -27,6 +27,12 @@ type textImage = {
   image: string;
 };
 
+type stringImage = {
+  value: string;
+  image: string;
+  key: number;
+};
+
 export default function Page() {
   const router = useRouter();
   const { handleSubmit, register } = useForm<FormData>();
@@ -79,6 +85,36 @@ export default function Page() {
   };
 
 
+  /** 
+   * number+stringの配列に対応する画像を出力する
+  */
+  const generateImageList = (inputArray: string): stringImage[] => {
+    const result: stringImage[] = [];
+    let i = 0;
+  
+    while (i < inputArray.length) {
+      const char = inputArray[i];
+  
+      if (!isNaN(Number(char))) { // 数字の場合
+        result.push({
+          value: char,
+          image: `/${char}.png`,
+          key: i
+        });
+        i++;
+      } else { // 文字列の場合
+        const str = inputArray.substring(i, i + 2);
+        result.push({
+          value: str,
+          image: `/${str}.png`,
+          key: i
+        });
+        i += 2;
+      }
+    }
+  
+    return result;
+  };
 
 const [command, setCommand] = useState("");
 const [imageURL, setImageURL] = useState("");
