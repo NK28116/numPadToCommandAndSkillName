@@ -1,4 +1,7 @@
 // src/app/page.tsx
+/**
+ * #TODO:いい感じのスタイルを探す
+ */
 'use client'
 import React from 'react';
 import CommandForm from './components/CommandForm';

@@ -34,6 +34,16 @@ export type ImageItem = {
     return result;
   };
   
+/**
+ * #TODO: 現状a->a.pngはできているが欲しいのは
+ * 中昇竜拳 ー＞  中竜巻
+ * や
+ * 最風　ー＞　奈落無惨
+ * といったコマンドの塊の列
+ * @param inputText 
+ * @returns 
+ */
+
   export const spiltInputArray = (inputText: string): ImageItem[] => {
     return inputText.split("--").map((item, index) => {
       const trimmedItem = item.trim();
