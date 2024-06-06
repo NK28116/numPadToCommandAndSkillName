@@ -1,3 +1,18 @@
+/**
+ * #GOAL: テンキー入力-> 入力画像、技名表示
+ * ex:
+ * input=236MK-623MP
+ * output=中竜巻旋風脚 - 中波動拳
+ * 
+ * #WAY:
+ * 1. 入力されたString配列(配列1)を区切り文字で分割
+ * 2. 分割された文字列をさらに[number[]string(H or M or L)string(P or K)](配列2)としてstringに分割
+ * 3. それぞれのstringに対応した画像を出力しその順番で並べる
+ * 4. 配列2に対応した技名をDBから持ってきて並べる
+ * 
+ * 
+ */
+
 "use client";
 
 import { useState } from "react";

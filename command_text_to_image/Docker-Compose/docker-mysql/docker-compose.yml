@@ -25,7 +25,6 @@ services:
     links:
       - mysql
     ports:
-    #TODO: ややこしいので6060に変更
-     - 3001:80 #http://localhost:3001/
+     - 6060:80 #http://localhost:3001/
     volumes:
      - ./mysql/DB
