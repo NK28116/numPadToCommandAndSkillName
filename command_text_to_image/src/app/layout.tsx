@@ -1,17 +1,19 @@
-import "./globals.css";
-export const metadata = {
-  title: "app-routerテストページ",
-  description: "Next.jsのApp Routerで普通にリンクする",
-};
+// src/app/layout.tsx
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import React from 'react';
+import './globals.css'; // グローバルスタイルシートを読み込みたい場合
+
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <html lang="ja">
-      <body className="">{children}</body>
+    <html lang="en">
+      <head>
+        <title>My Next.js App</title>
+      </head>
+      <body>
+        {children}
+      </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
