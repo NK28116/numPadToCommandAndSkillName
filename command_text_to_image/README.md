@@ -1,13 +1,22 @@
 
-## 覚書
+# 覚書
 - WSL2+Next+TypeScript+yarn+docker+Mysql+prisma
   - WSL2:ubuntu
   - docker:
   - Next:http://localhost:3000
   - prisma:sudo prisma studio
-  - 
 
+# tailwind
+  - flex justify-center items-center min-h-screen:
+    - flex: 親要素をフレックスコンテナにします。
+    - justify-center: フレックスアイテムを水平方向に中央揃えします。
+    - items-center: フレックスアイテムを垂直方向に中央揃えします。
+    - min-h-screen: 最小高さをビューポートの高さに設定します。
+  - flex space-x-4:
+    - flex: 子要素を横並びにします。
+    - space-x-4: 子要素間の間隔を設定します。
 
+# Next
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -15,13 +24,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
