@@ -26,10 +26,10 @@ const CommandInput: React.FC<CommandInputProps> = ({ onConvert, onClear }) => {
         value={command}
         onChange={(e) => setCommand(e.target.value)}
       />
-      <button type="button" onClick={handleConvertButtonClick}>
+      <button className="border-2 border-amber-300" type="button" onClick={handleConvertButtonClick}>
         テキストを変換
       </button>
-      <button type="button" onClick={handleClearButtonClick}>
+      <button className="border-2 border-amber-300" type="button" onClick={handleClearButtonClick}>
         テキストをクリア
       </button>
     </div>

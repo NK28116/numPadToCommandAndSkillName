@@ -5,6 +5,7 @@
 'use client'
 import React from 'react';
 import CommandForm from './components/CommandForm';
+import Image from "next/image";
 
 const Home: React.FC = () => {
   return (
@@ -23,6 +24,20 @@ const Home: React.FC = () => {
               <div className="bg-blue-500">Column Right Row 2</div>
               <div className="bg-blue-500">Column Right Row 3</div>
             </div>
+          </div>
+          <div>
+          <img
+            src="a.png"
+            alt="1vector"
+            width={100}
+            height={100}
+            />
+          <img
+            src="a.png"
+            alt="1vector"
+            width={100}
+            height={100}
+            />
           </div>
     </div>
    </>
