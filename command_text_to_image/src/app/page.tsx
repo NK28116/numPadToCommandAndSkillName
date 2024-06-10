@@ -25,19 +25,21 @@ const Home: React.FC = () => {
               <div className="bg-blue-500">Column Right Row 3</div>
             </div>
           </div>
-          <div>
-          <img
-            src="a.png"
+          <div className="flex justify-center items-center min-h-screen">
+          <div className="flex space-x-4">
+          <Image
+            src="/a.png"
             alt="1vector"
             width={100}
             height={100}
             />
-          <img
-            src="a.png"
+          <Image
+            src="/a.png"
             alt="1vector"
             width={100}
             height={100}
             />
+            </div>
           </div>
     </div>
    </>
