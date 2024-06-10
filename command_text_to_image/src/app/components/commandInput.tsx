@@ -22,6 +22,7 @@ const CommandInput: React.FC<CommandInputProps> = ({ onConvert, onClear }) => {
   return (
     <div className="outline">
       <input
+      className="border-2 border-gray-800"
         value={command}
         onChange={(e) => setCommand(e.target.value)}
       />
