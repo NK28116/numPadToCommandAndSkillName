@@ -17,6 +17,7 @@ const CommandForm: React.FC = () => {
     commandArray.forEach((command) => {
       images.push(...generateImageList(command))
     })
+    images.pop()
     setImageItems(images)
   }
 
