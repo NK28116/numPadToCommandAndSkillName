@@ -9,7 +9,7 @@ type ImageListProps = {
 
 const ImageList: React.FC<ImageListProps> = ({ items }) => {
   return (
-    <div>
+    <div className="flex outline">
       {items.map((item) => (
         <div key={item.key}>
           <img src={item.image} alt={`Image of ${item.value}`} />
