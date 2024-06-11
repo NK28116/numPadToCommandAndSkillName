@@ -8,8 +8,13 @@ import { generateImageList, ImageItem } from "../util/imageUtl"
 const CommandForm: React.FC = () => {
   const [imageItems, setImageItems] = useState<ImageItem[]>([])
 
-  const handleConvert = (command: string) => {
-    const images = generateImageList(command)
+  const handleConvert = (combo: string) => {
+    //combo=cammand--command
+    const commandArray = combo.split("--")
+    const images: ImageItem[] = []
+    commandArray.forEach((command) => {
+      images.push(...generateImageList(command))
+    })
     setImageItems(images)
   }
 
