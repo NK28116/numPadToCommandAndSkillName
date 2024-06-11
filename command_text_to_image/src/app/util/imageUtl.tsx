@@ -37,6 +37,11 @@ export const generateImageList = (inputArray: string): ImageItem[] => {
       i += 2
     }
   }
-
+  const arrow = "combine"
+  result.push({
+    value: arrow,
+    image: `/directionVector/rightArrowFinger.png`,
+    key: i,
+  })
   return result
 }

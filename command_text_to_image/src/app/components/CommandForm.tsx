@@ -9,7 +9,9 @@ const CommandForm: React.FC = () => {
   const [imageItems, setImageItems] = useState<ImageItem[]>([])
 
   const handleConvert = (combo: string) => {
-    //combo=cammand--command
+    //combo=command1--command2
+    //commandArray=[command1,command2]
+    //
     const commandArray = combo.split("--")
     const images: ImageItem[] = []
     commandArray.forEach((command) => {
