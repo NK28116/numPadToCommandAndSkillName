@@ -6,7 +6,6 @@
 "use client"
 import React from "react"
 import CommandForm from "./components/CommandForm"
-import Image from "next/image"
 
 const Home: React.FC = () => {
   return (
