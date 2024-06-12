@@ -31,7 +31,7 @@ export const generateImageList = (inputArray: string): ImageItem[] => {
       const str = inputArray.substring(i, i + 2)
       result.push({
         value: str,
-        image: `/${str}.png`,
+        image: `/SF6Button/${str}.png`,
         key: i,
       })
       i += 2
@@ -40,7 +40,7 @@ export const generateImageList = (inputArray: string): ImageItem[] => {
   const arrow = "combine"
   result.push({
     value: arrow,
-    image: `/directionVector/rightArrowFinger.png`,
+    image: `/directionVector/combineVectorbar.png`,
     key: i,
   })
   return result
