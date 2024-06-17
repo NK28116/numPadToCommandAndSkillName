@@ -11,6 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const country = await prisma.country.findUnique({
         where: {
           Code: inputString,
+          Name: inputString,
         },
       })
 
