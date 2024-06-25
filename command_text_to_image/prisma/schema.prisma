@@ -9,7 +9,7 @@ datasource db {
 
 model city {
   ID          Int     @id @default(autoincrement())
-  Name        String  @default("") @db.Char(35)
+  Name        String  @unique @db.Char(35)
   CountryCode String  @default("") @db.Char(3)
   District    String  @default("") @db.Char(20)
   Population  Int     @default(0)

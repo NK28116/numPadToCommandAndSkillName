@@ -1,25 +1,60 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import React from "react"
-import handler from "@/src/app/api/getCountry"
-const About = () => {
-  const router = useRouter()
+import { useState } from "react"
+import axios from "axios"
 
-  const handleClick = () => {}
+type CityData = {
+  ID: number
+  Name: string
+  CountryCode: string
+  District: string
+  Population: number
+} | null
+
+export default function Page() {
+  const [name, setName] = useState<string>("")
+  const [cityData, setCityData] = useState<CityData>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`../api/search/${name}`)
+      console.log("response", response)
+      if (response.status === 200) {
+        const data = response.data
+        setCityData(data)
+        setError(null)
+        console.log("data", data)
+      } else {
+        const errorData = response.data
+        console.log("errorData", errorData)
+        setError(errorData.error)
+        setCityData(null)
+      }
+    } catch (err) {
+      console.log("err", err)
+      setError(`Failed to fetch city data: ${err.message}`)
+      setCityData(null)
+    }
+    console.log("cityData", cityData)
+  }
 
   return (
     <div>
-      <input className="border-2 border-gray-800" />
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4"
-        onClick={handleClick}
-      >
-        戻る
-      </button>
-      <output className="border-2 border-gray-800">output:</output>
+      <h1>Search City</h1>
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter city name" />
+      <button onClick={handleSearch}>Search</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {cityData && (
+        <div>
+          <h2>City Details</h2>
+          <p>ID: {cityData.ID}</p>
+          <p>Name: {cityData.Name}</p>
+          <p>CountryCode: {cityData.CountryCode}</p>
+          <p>District: {cityData.District}</p>
+          <p>Population: {cityData.Population}</p>
+        </div>
+      )}
     </div>
   )
 }
-
-export default About
