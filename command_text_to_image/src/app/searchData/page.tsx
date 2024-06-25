@@ -1,32 +1,9 @@
-"use client"
+import Search from "@/src/app/components/Search"
 
-import { useEffect, useState } from "react"
-import { country } from "@prisma/client"
-import Search from "@/src/app/util/search"
-
-export default function Home({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string
-  }
-}) {
-  const query = searchParams?.query || ""
-
-  const [countryNames, setCountryNames] = useState<country[]>([])
-  useEffect(() => {
-    const getCountryData = async () => {
-      const res = await fetch(`../api/country/${query}`)
-      const data = await res.json()
-      //console.log(data)
-      setCountryNames(data)
-    }
-    getCountryData()
-  }, [])
-  console.log("countryNames", countryNames)
-
+export default function Home() {
   return (
     <>
+      <h1>Search for Countries by Continent</h1>
       <Search placeholder="Search continent..." />
     </>
   )
