@@ -6,7 +6,7 @@ import { country } from "@prisma/client"
 
 export default function ContinentPage() {
   const pathname = usePathname()
-  const continent = pathname.split("/")[2]
+  const continent = pathname?.split("/")[2]
 
   const [countryData, setCountryData] = useState<country[]>([])
 
