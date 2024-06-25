@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/src/lib/prismaClient"
 import { country } from "@prisma/client"
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
 
-export async function GET(request, { params }) {
+export async function GET(request: Request, { params }: Params) {
   const { slug } = params
 
   try {
