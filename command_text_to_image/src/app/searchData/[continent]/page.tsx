@@ -24,6 +24,7 @@ export default function ContinentPage() {
   return (
     <>
       <h1>Countries in {continent}</h1>
+      <div>==============</div>
       <div>
         {countryData.map((country) => (
           <div key={country.Code}>
@@ -32,6 +33,7 @@ export default function ContinentPage() {
             <p>Head of State: {country.HeadOfState}</p>
             <p>Code: {country.Code}</p>
             <p>Continent: {country.Continent}</p>
+            <p>-------</p>
           </div>
         ))}
       </div>
