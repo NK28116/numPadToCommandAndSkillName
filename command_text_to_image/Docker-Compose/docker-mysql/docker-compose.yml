@@ -1,30 +1,14 @@
 # versionは3系が最新版で、versionによって書き方が異なる
 version: "3"
 services:
-  mysql:
+  mysqlCreateDatabase:
     container_name: myOwnDataBase
     build: ./mysql/    #Dockerfileからビルドすることを示す
     ports:
-      - "8080:3366"
+      - "8888:3306"
     volumes:
       - ./mysql/DB:/docker-entrypoint-initdb.d  #初期データをマウントする場所
 
     image: original_mysql_create_database # イメージの名前
     environment:
       - MYSQL_ROOT_PASSWORD=databasepassword   #コンテナ内のMySQLを起動する際のパスワードを設定
-
-  phpmyadmin:
-    depends_on:
-      - mysql
-    image: phpmyadmin/phpmyadmin
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_USER=root
-      - PMA_PASSWORD=databasepassword
-    links:
-      - mysql
-    ports:
-     - 6060:80 #http://localhost:3001/
-    volumes:
-     - ./mysql/DB
