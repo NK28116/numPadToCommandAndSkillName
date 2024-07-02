@@ -2,14 +2,14 @@
 version: "3"
 services:
   mysql:
-    container_name: world-db
+    container_name: myOwnDataBase
     build: ./mysql/    #Dockerfileからビルドすることを示す
     ports:
-      - "8080:3306"
+      - "8080:3366"
     volumes:
       - ./mysql/DB:/docker-entrypoint-initdb.d  #初期データをマウントする場所
 
-    image: original_mysql_world # イメージの名前
+    image: original_mysql_create_database # イメージの名前
     environment:
       - MYSQL_ROOT_PASSWORD=databasepassword   #コンテナ内のMySQLを起動する際のパスワードを設定
 
