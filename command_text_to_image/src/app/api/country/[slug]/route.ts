@@ -1,3 +1,6 @@
+// api/country/[slug]/route
+// api/country/Asia などで表示するDB
+
 import { NextResponse } from "next/server"
 import { prisma } from "@/src/lib/prismaClient"
 import { country } from "@prisma/client"
