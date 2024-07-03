@@ -8,24 +8,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { name } = req.query
 
     try {
-      // Prismaを使用してデータベースから都市データを取得
-      const cityData = await prisma.city.findUnique({
+      const searchData = await prisma.city.findUnique({
         where: {
           Name: String(name),
         },
       })
 
-      if (cityData) {
-        res.status(200).json(cityData)
+      if (searchData) {
+        res.status(200).json(searchData)
       } else {
-        res.status(404).json({ error: "City not found" })
+        res.status(404).json({ error: "Data not found" })
       }
-
-      // Tokyoの参照テスト
-      const tokyoData = await prisma.city.findUnique({
-        where: { Name: "Tokyo" },
-      })
-      console.log("Tokyo data:", tokyoData)
     } catch (error) {
       res.status(500).json({ error: "Internal server error" })
     } finally {
