@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/src/lib/prismaClient"
-import { parseCSV } from "@/src/util/csvUtils"
+import { parseCSV } from "@/src/app/util/csvUtils"
 import multer from "multer"
 import { promisify } from "util"
 
