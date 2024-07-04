@@ -1,7 +1,7 @@
 # util
 
 ## 概要
-画像関連のutl
+
 ## 各ファイルの機序
 
 ### imageUtl.tsx
@@ -13,34 +13,17 @@
 - `spiltInputArray(inputText: string): ImageItem[]`:
   入力された文字列を区切り文字で分割し、それに対応する画像アイテムのリストを生成します。
 
- console.log(generateImageList("234MK"))
-  
+ ### csvUtl.tsx
+ csvファイルのバイナリーデータを受け取りJavaScriptオブジェクトの配列に変換
+ 
+#### parseCSV
+- 引数 fileBuffer CSVファイルのバイナリデータ
+- 返り値 解析されたデータを含むPromise オブジェクト
 
-  [LOG]: [{
-  "value": "2",
-  "image": "/2.png",
-  "key": 0
-}, {
-  "value": "3",
-  "image": "/3.png",
-  "key": 1
-}, {
-  "value": "4",
-  "image": "/4.png",
-  "key": 2
-}, {
-  "value": "MK",
-  "image": "/MK.png",
-  "key": 3
-}] 
+#### Readableストリーム
+バッファからストリームを作成
+ストリームをcsv-parserにパイプ
+dataイベントで結果をresults配列にプッシュ
+全てのデータが処理されるとendイベントが発火
+バッファをプッシュして終了
 
-console.log(spiltInputArray("a--bc"))
-[LOG]: [{
-  "value": "a",
-  "image": "/a.png",
-  "key": 0
-}, {
-  "value": "bc",
-  "image": "/bc.png",
-  "key": 1
-}] 

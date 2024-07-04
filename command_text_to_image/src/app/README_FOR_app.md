@@ -27,7 +27,7 @@ src
 │   │   └── page.tsx ：一般的な検索結果ページ。
 │   ├── template.tsx
 │   └── util
-│       ├── connectImageArray.tsx 画像配列を処理するためのユーティリティ関数
+│       ├── csvUtil.tsx 画像配列を処理するためのユーティリティ関数
 │       └── imageUtl.tsx 画像処理に関連するユーティリティ関数。
 └── lib
     └── prismaClient.ts
