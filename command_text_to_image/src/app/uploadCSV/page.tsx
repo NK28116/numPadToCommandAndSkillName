@@ -19,7 +19,7 @@ export default function UploadCSV() {
     const formData = new FormData()
     formData.append("file", file)
 
-    const response = await fetch("/api/import-csv", {
+    const response = await fetch("/api/convertCSV", {
       method: "POST",
       body: formData,
     })
