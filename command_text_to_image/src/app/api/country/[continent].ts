@@ -1,3 +1,5 @@
+//取得したDBから表示するものを選ぶ
+
 import { NextApiRequest, NextApiResponse } from "next"
 import { country_Continent } from "@prisma/client"
 import { prisma } from "@/src/lib/prismaClient"

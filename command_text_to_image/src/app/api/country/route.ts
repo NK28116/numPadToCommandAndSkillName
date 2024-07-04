@@ -1,3 +1,4 @@
+// /api/countryでcountryに一致するデータを全て取得するData
 import { NextResponse } from "next/server"
 import { prisma } from "@/src/lib/prismaClient"
 import { country } from "@prisma/client"
