@@ -1,6 +1,18 @@
 # NOTE
 メモとか新規に学習したメソッドとか見落としてたやつとか
 
+## 2024/08/11
+完全に忘れてしまっているしslackも消えてしまったんで日誌的に使用
+- db 操作
+  - cd Docker-Compose/docker-mysql/ で　sudo docker-compose exec  mysql bash　
+  - mysql -uroot -p databasepassword
+- ディレクトリ構造を作成
+- 最終的なprisma scheme を作成
+
+とりあえず1つのゲームで作ろう
+
+
+---
 ## prisma
 
 ### DB検索apiの作成
