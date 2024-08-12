@@ -1,39 +1,41 @@
 // src/components/CommandInput.tsx
-'use client'
-import React, { useState } from 'react';
+"use client"
+import React, { useState } from "react"
 
 type CommandInputProps = {
-  onConvert: (command: string) => void;
-  onClear: () => void;
-};
+  onConvert: (command: string) => void
+  onClear: () => void
+}
 
 const CommandInput: React.FC<CommandInputProps> = ({ onConvert, onClear }) => {
-  const [command, setCommand] = useState("");
+  const [command, setCommand] = useState("")
 
   const handleConvertButtonClick = () => {
-    onConvert(command);
-  };
+    onConvert(command)
+  }
 
   const handleClearButtonClick = () => {
-    setCommand("");
-    onClear();
-  };
+    setCommand("")
+    onClear()
+  }
 
   return (
-    <div className="outline">
+    <div className="outline flex justify-around">
+      <div className={"border place-content-center"}>入力</div>
       <input
-      className="border-2 border-gray-800"
+        className="border"
+        placeholder={"input Text"}
         value={command}
         onChange={(e) => setCommand(e.target.value)}
       />
-      <button className="border-2 border-amber-300" type="button" onClick={handleConvertButtonClick}>
+      <button className="border" type="button" onClick={handleConvertButtonClick}>
         テキストを変換
       </button>
-      <button className="border-2 border-amber-300" type="button" onClick={handleClearButtonClick}>
+      <button className="border" type="button" onClick={handleClearButtonClick}>
         テキストをクリア
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CommandInput;
+export default CommandInput

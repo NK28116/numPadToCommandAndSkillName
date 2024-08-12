@@ -1,42 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: light) {
+/**
+ページ全体，背景やコンテンツなど
+パーツなどは個別に設定する
+ */
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --color-primary: #ff8438;
-    --color-primary-rgb: 56,128,255;
-    --color-primary-contrast: #ffffff;
-    --color-primary-contrast-rgb: 255,255,255;
-
-    --color-secondary: #3dc2ff;
-    --color-secondary-rgb: 61,194,255;
-    --color-secondary-contrast: #ffffff;
-    --color-secondary-contrast-rgb: 255,255,255;
+    --color-primary: #000000;
+    --color-primary-contrast: #6e8eee;
+    --color-secondary: #ffffff;
+    --color-secondary-contrast: #49b257;
   }
-}
+
 
 body {
-  color: var(--color-primary);
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(var(--color-primary-rgb))
-    )
-    rgb(var(--background-start-rgb));
-    padding: 20px 20px 60px;
-    max-width: 680px;
+    color: var(--color-primary);
+    background: var(--color-secondary);
+    padding: 20px 20px  60px;
     margin: 10px;
+    border-color: cadetblue;
+
 }
 
 @layer utilities {
@@ -45,10 +28,7 @@ body {
   }
 }
 
-button{
-margin:30px
-}
 input{
-margin:40px
+margin:40px;
 }
 

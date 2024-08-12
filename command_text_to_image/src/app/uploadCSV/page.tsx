@@ -32,11 +32,13 @@ export default function UploadPage() {
   }
 
   return (
-    <div>
+    <div className={"border"}>
       <h1>Upload CSV</h1>
       <form onSubmit={handleSubmit}>
-        <input type="file" accept=".csv" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
+        <input type="file" accept=".csv" onChange={handleFileChange} className={"border"} />
+        <button type="submit" className={"border"}>
+          Upload
+        </button>
       </form>
       {message && <p>{message}</p>}
     </div>
