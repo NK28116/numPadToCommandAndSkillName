@@ -2,7 +2,7 @@
 version: "3"
 services:
   mysql:
-    container_name: world-db
+    container_name: fighting-game-db
     build: ./mysql/    #Dockerfileからビルドすることを示す
     ports:
       - "8080:3306"
