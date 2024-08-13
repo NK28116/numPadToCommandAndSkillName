@@ -24,7 +24,7 @@ const CommandInput: React.FC<CommandInputProps> = ({ onConvert, onClear }) => {
       <div className={"border place-content-center"}>入力</div>
       <input
         className="border"
-        placeholder={"input Text"}
+        placeholder={"inputA--inputB"}
         value={command}
         onChange={(e) => setCommand(e.target.value)}
       />
