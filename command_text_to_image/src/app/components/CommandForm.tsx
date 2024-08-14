@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import CommandInput from "./CommandInput"
 import ImageList from "./ImageList"
 import { generateImageList, ImageItem } from "../util/imageUtl"
+import Search from "@/src/app/components/Search"
 
 const CommandForm: React.FC = () => {
   const [imageItems, setImageItems] = useState<ImageItem[]>([])
@@ -27,6 +28,7 @@ const CommandForm: React.FC = () => {
 
   return (
     <div>
+      <Search placeholder="Search character..." />
       <CommandInput onConvert={handleConvert} onClear={handleClear} />
       <ImageList items={imageItems} />
     </div>
