@@ -8,6 +8,7 @@ type CommandInputProps = {
 }
 
 const CommandInput: React.FC<CommandInputProps> = ({ onConvert, onClear }) => {
+  const [character, setCharacter] = useState("")
   const [command, setCommand] = useState("")
 
   const handleConvertButtonClick = () => {
