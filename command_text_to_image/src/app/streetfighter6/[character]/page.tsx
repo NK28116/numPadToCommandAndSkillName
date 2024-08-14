@@ -12,7 +12,7 @@ export default function ContinentPage() {
 
   useEffect(() => {
     const getCountryData = async () => {
-      const res = await fetch(`/api/country/${characterName}`)
+      const res = await fetch(`/api/${characterName}`)
       const data = await res.json()
       setCharacterSkillData(data)
     }
@@ -26,13 +26,13 @@ export default function ContinentPage() {
       <h1>CommandTable of {characterName}</h1>
       <div>==============</div>
       <div>
-        {characterSkillData.map((country) => (
-          <div key={country.Code}>
-            <p>Name: {country.Name}</p>
-            <p>Population: {country.Population}</p>
-            <p>Head of State: {country.HeadOfState}</p>
-            <p>Code: {country.Code}</p>
-            <p>Continent: {country.Continent}</p>
+        {characterSkillData.map((charcter) => (
+          <div key={charcter.ID}>
+            <p>Name: {charcter.CharacterName}</p>
+            <p>numPadInput: {charcter.numPadInput}</p>
+            <p>SkilName: {charcter.SkillName}</p>
+            <p>Command: {charcter.commandImagePath}</p>
+            <p>HitParts: {charcter.HitParts}</p>
             <p>-------</p>
           </div>
         ))}

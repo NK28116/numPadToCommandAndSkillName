@@ -7,7 +7,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const [searchTerm, setSearchTerm] = useState("")
 
   function handleSearch() {
-    replace(`/searchData/${searchTerm}`)
+    replace(`/streetfighter6/${searchTerm}`)
   }
 
   return (
