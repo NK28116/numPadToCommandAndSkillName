@@ -11,6 +11,159 @@
 
 とりあえず1つのゲームで作ろう
 
+## 2024/08/12
+###  完全リセット
+1. prisma.schemeを作成
+2. `prisma migrate dev --name init` で空のDB作成→world .sqlを入れてないのでレコードはなし
+### 整形処理をしたブランチを作る
+1. mainにuploadCSVをマージしてreshapeに反映
+2. デザイン以外（リンクやディレクトリ構造）の整形処理
+3. マージ済み
+
+## 2024/08/13
+カジュアル面談がいくつか入っているから大まかな方針だけ
+### TODO
+- [x] mainの更新
+- [x] prismaのコンテナ名やDBを変更しても問題ないかテスト
+
+#### image名を変更
+```bash
+sudo docker-compose ps
+WARN[0000] /Users/niwa_kazuhiro/Documents/MyApps_clone/command_text_to_image/Docker-Compose/docker-mysql/docker-compose.yml: `version` is obsolete
+NAME       IMAGE                  COMMAND                  SERVICE   CREATED        STATUS        PORTS
+world-db   original_mysql_world   "docker-entrypoint.s…"   mysql     21 hours ago   Up 21 hours   33060/tcp, 0.0.0.0:8080->3306/tcp
+```
+
+   4. `sudo docker tag original_mysql_world fighting_game_database`
+   3. `sudo docker-compose stop`
+   4. `sudo docker-compose up -d`
+
+```bash
+sudo docker-compose ps
+   WARN[0000] /Users/niwa_kazuhiro/Documents/MyApps_clone/command_text_to_image/Docker-Compose/docker-mysql/docker-compose.yml: `version` is obsolete
+   NAME       IMAGE                    COMMAND                  SERVICE   CREATED              STATUS         PORTS
+   world-db   fighting_game_database   "docker-entrypoint.s…"   mysql     About a minute ago   Up 4 seconds   33060/tcp, 0.0.0.0:8080->3306/tcp
+```
+
+#### コンテナ名を変更
+
+```bash
+sudo docker-compose ps
+WARN[0000] /Users/niwa_kazuhiro/Documents/MyApps_clone/command_text_to_image/Docker-Compose/docker-mysql/docker-compose.yml: `version` is obsolete
+NAME       IMAGE                    COMMAND                  SERVICE   CREATED              STATUS         PORTS
+world-db   fighting_game_database   "docker-entrypoint.s…"   mysql     About a minute ago   Up 4 seconds   33060/tcp, 0.0.0.0:8080->3306/tcp
+```
+
+1. `sudo docker rename world-db fighting-game-db`
+
+```bash
+sudo docker-compose ps
+WARN[0000] /Users/niwa_kazuhiro/Documents/MyApps_clone/command_text_to_image/Docker-Compose/docker-mysql/docker-compose.yml: `version` is obsolete
+NAME               IMAGE                    COMMAND                  SERVICE   CREATED         STATUS         PORTS
+fighting-game-db   fighting_game_database   "docker-entrypoint.s…"   mysql     9 minutes ago   Up 8 minutes   33060/tcp, 0.0.0.0:8080->3306/tcp
+```
+
+#### `.env`ファイルの変更
+```dotenv
+- MYSQL_DATABASE=world
++ MYSQL_DATABASE=fighting_game_database_mysql
+```
+#### DBeaver での接続エラー
+`SQL Error [08001]: Public Key Retrieval is not allowed`
+-> 接続設定 の ドライバのプロパティ の allowPublicKeyRetrieval を true,useSSLをfalse
+
+---
+
+- [x] modelを更新してprismaでのDBを更新できるか確認
+- [ ] 最低限の設計 inputからDBの技名を参照 (front -> DB)
+- [ ] DBのキャラ名を選択できるようにする.   (DB -> front)
+
+---
+ ここから下は新規にプロジェクト作成に関係する
+- [ ] 新規prismaプロジェクトの手順doc作成
+- [ ] 技名の表示
+- [ ] 始動技のフレーム表示
+- [ ] 補正含めたダメージ計算
+
+### DONE:上記以外で行ったこと
+place holderの変更
+
+## 2024/08/14
+
+### Create
+- scheme.prismaの変更
+
+```bash
+ prisma generate
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Error:
+The "path" argument must be of type string. Received undefined
+```
+
+のエラーがずっと出ていた
+→prisma CLIのインストールで解決した
+
+```bash
+npm install prisma --save-dev
+
+npm warn deprecated npx@10.2.2: This package is now part of the npm CLI.
+
+added 1 package, changed 6 packages, and audited 894 packages in 36s
+
+135 packages are looking for funding
+  run `npm fund` for details
+
+56 vulnerabilities (1 low, 18 moderate, 31 high, 6 critical)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+
+
+npx prisma generate
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (v5.18.0) to ./node_modules/@prisma/client in 109ms
+
+Start by importing your Prisma Client (See: http://pris.ly/d/importing-client)
+
+Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+
+```
+
+-> model更新した際には `npm install prisma --save-dev`を行う
+
+### UPLOAD
+public内のテスト用のcsvファイルを編集
+IDは自動で入ってくれるので定義を決めなくていい
+
+### READ
+- キャラ一体についてapiで動的にDBからjsonを取得できるようにした
+  - search apiはいらないので削除
+  - <Search/> でキャラの全データを表示可能に
+
+### DELETE
+基本的にデータそのものを操作することは考えにくいので後回し
+
+## TODO
+- 条件1:キャラ名,条件2:numPadInput で技単体の名前を表示できるようにする
+  - 今後これを複数積み上げててコンボにしたい
+  - メインブランチで複数キャラのCSV作っておく？
+- 現在createmany でレコード作成しているのでupsert(複合条件一致でupdate)に交換予定(最後)
+- 回す方向は決まってるけどしゃがみコパンとかも考える必要性あるから波動とか逆ヨガの画像作るのは一番最後でいいかも
+
+
+## 2024/08/16
+
+### キャラ：技（1：N）一覧の作成
+- おっぽツールみたいな感じでまずはキャラ選択 ー＞ 技一覧みたいなのを目指す
+- キャラ／コマンドでjson を一つ出力できるようにした
+- json で取得すれば.name
+- json で取得すれば.name見たいのができるはずだがが
+
 
 ---
 ## prisma
