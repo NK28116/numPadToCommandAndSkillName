@@ -11,13 +11,13 @@ export default function ContinentPage() {
   const [characterSkillData, setCharacterSkillData] = useState<StreetFighter6[]>([])
 
   useEffect(() => {
-    const getCountryData = async () => {
+    const getCharacterSkillData = async () => {
       const res = await fetch(`/api/${characterName}`)
       const data = await res.json()
       setCharacterSkillData(data)
     }
     if (characterName) {
-      getCountryData()
+      getCharacterSkillData()
     }
   }, [characterName])
 
