@@ -28,7 +28,7 @@ const CommandForm: React.FC = () => {
 
   return (
     <div>
-      <Search placeholder="Search columnName..." />
+      <Search />
       <CommandInput onConvert={handleConvert} onClear={handleClear} />
       <ImageList items={imageItems} />
     </div>

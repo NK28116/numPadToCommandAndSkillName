@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { StreetFighter6 } from "@prisma/client"
-import { useRouter } from "next/navigation"
 
 export default function ContinentPage() {
   const characterName = "All"
-  const { replace } = useRouter()
   const [characterSkillData, setCharacterSkillData] = useState<StreetFighter6[]>([])
   const [selectedCharacter, setSelectedCharacter] = useState<string>("")
+  const [filteredData, setFilteredData] = useState<StreetFighter6[]>([])
 
   useEffect(() => {
     const getCharacterSkillData = async () => {
@@ -24,7 +23,8 @@ export default function ContinentPage() {
 
   function handleSearch() {
     if (selectedCharacter) {
-      replace(`/streetfighter6/${selectedCharacter}`)
+      const filtered = characterSkillData.filter((character) => character.CharacterName === selectedCharacter)
+      setFilteredData(filtered)
     }
   }
 
@@ -45,7 +45,24 @@ export default function ContinentPage() {
             </option>
           ))}
         </select>
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch}>Set</button>
+      </div>
+      <div>-----</div>
+      <div>
+        {filteredData.length > 0 ? (
+          filteredData.map((character) => (
+            <div key={character.ID}>
+              <p>Name: {character.CharacterName}</p>
+              <p>numPadInput: {character.numPadInput}</p>
+              <p>SkilName: {character.SkillName}</p>
+              <p>Command: {character.commandImagePath}</p>
+              <p>HitParts: {character.HitParts}</p>
+              <p>-------</p>
+            </div>
+          ))
+        ) : (
+          <p>No character selected</p>
+        )}
       </div>
     </>
   )
