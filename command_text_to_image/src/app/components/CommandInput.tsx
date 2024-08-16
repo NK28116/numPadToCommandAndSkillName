@@ -12,6 +12,7 @@ const CommandInput: React.FC<CommandInputProps> = ({ onConvert, onClear }) => {
 
   const handleConvertButtonClick = () => {
     onConvert(command)
+    console.log("inputCommand", command)
   }
 
   const handleClearButtonClick = () => {

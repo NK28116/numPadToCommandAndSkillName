@@ -27,6 +27,9 @@ export default function ContinentPage() {
       setFilteredData(filtered)
     }
   }
+  // 重複しないキャラクター名のリストを生成
+  const uniqueCharacters = Array.from(new Set(characterSkillData.map((character) => character.CharacterName)))
+  console.log(filteredData.map((character) => character.SkillName))
 
   return (
     <>
@@ -39,9 +42,9 @@ export default function ContinentPage() {
           <option value="" disabled>
             Select a character
           </option>
-          {characterSkillData.map((character) => (
-            <option key={character.ID} value={character.CharacterName}>
-              {character.CharacterName}
+          {uniqueCharacters.map((characterName, index) => (
+            <option key={index} value={characterName}>
+              {characterName}
             </option>
           ))}
         </select>
