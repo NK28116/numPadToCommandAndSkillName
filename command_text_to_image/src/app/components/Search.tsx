@@ -9,18 +9,6 @@ export default function ContinentPage() {
   const [selectedCharacter, setSelectedCharacter] = useState<string>("")
   const [filteredData, setFilteredData] = useState<StreetFighter6[]>([])
 
-  useEffect(() => {
-    const getCharacterSkillData = async () => {
-      const res = await fetch(`/api/${characterName}`)
-      const data = await res.json()
-      setCharacterSkillData(data)
-    }
-
-    if (characterName) {
-      getCharacterSkillData()
-    }
-  }, [characterName])
-
   function handleSearch() {
     if (selectedCharacter) {
       const filtered = characterSkillData.filter((character) => character.CharacterName === selectedCharacter)
@@ -29,7 +17,22 @@ export default function ContinentPage() {
   }
   // 重複しないキャラクター名のリストを生成
   const uniqueCharacters = Array.from(new Set(characterSkillData.map((character) => character.CharacterName)))
-  console.log(filteredData.map((character) => character.SkillName))
+
+  //セットされたキャラネーム
+  const selectedCharacterName = filteredData.map((character) => character.CharacterName)[0]
+  console.log(selectedCharacterName)
+
+  useEffect(() => {
+    const getCharacterSkillData = async () => {
+      const res = await fetch(`/api/${selectedCharacterName}`)
+      const data = await res.json()
+      setCharacterSkillData(data)
+    }
+
+    if (characterName) {
+      getCharacterSkillData()
+    }
+  }, [characterName])
 
   return (
     <>
@@ -51,6 +54,7 @@ export default function ContinentPage() {
         <button onClick={handleSearch}>Set</button>
       </div>
       <div>-----</div>
+
       <div>
         {filteredData.length > 0 ? (
           filteredData.map((character) => (
