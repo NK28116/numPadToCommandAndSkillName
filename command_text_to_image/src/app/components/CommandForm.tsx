@@ -26,21 +26,25 @@ const CommandForm: React.FC = () => {
           const response = await fetch(`/api/${selectedCharacter}/${command}`)
           if (response.ok) {
             const data = await response.json()
-            const skillName = data[0]?.SkillName || "Skill not found"
+            const skillName = data.SkillName || "Skill not found"
             fetchedSkillNames.push(skillName)
+
+            console.log("data", data[0].SkillName)
+            console.log("skillname", skillName)
           } else {
-            fetchedSkillNames.push("Skill not found")
+            fetchedSkillNames.push("Skill not found!")
           }
         } catch (error) {
-          fetchedSkillNames.push("Skill not found")
+          fetchedSkillNames.push("Skill not found!!!")
         }
       }
     }
 
     // 全てのリクエストが完了した後に状態を更新
-    setSkillNames(fetchedSkillNames)
-    setImageItems(images)
-    console.log(fetchedSkillNames)
+    //setSkillNames(fetchedSkillNames)
+    //setImageItems(images)
+    console.log("fetched", fetchedSkillNames)
+    console.log("skillnames", skillNames)
   }
 
   const handleClear = () => {
