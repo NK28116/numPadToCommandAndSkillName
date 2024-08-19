@@ -12,7 +12,8 @@ const CommandForm: React.FC = () => {
   const [skillNames, setSkillNames] = useState<string[]>([])
 
   const handleConvert = async (combo: string) => {
-    const commandArray = combo.split("--")
+    // 区切り文字 `--` が含まれているかチェック
+    const commandArray = combo.includes("--") ? combo.split("--") : [combo]
     const images: ImageItem[] = []
     const fetchedSkillNames: string[] = []
 
@@ -40,9 +41,11 @@ const CommandForm: React.FC = () => {
       }
     }
 
-    // 全てのリクエストが完了した後に状態を更新
-    //setSkillNames(fetchedSkillNames)
-    //setImageItems(images)
+    // `fetchedSkillNames` の最初の要素だけを使用する
+    if (fetchedSkillNames.length > 0) {
+      setSkillNames([fetchedSkillNames[0]])
+    }
+
     console.log("fetched", fetchedSkillNames)
     console.log("skillnames", skillNames)
   }
