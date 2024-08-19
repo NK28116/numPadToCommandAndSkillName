@@ -11,7 +11,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
 
   try {
     // キャラクター名と numPadInput に基づいてレコードを取得
-    const numPadInputData = await prisma.streetFighter6.findMany({
+    const numPadInputData = await prisma.streetFighter6.findFirst({
       where: {
         CharacterName: character,
         numPadInput: numPadInput,
@@ -19,7 +19,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
     })
 
     // データが存在しない場合
-    if (numPadInputData.length === 0) {
+    if (!numPadInputData) {
       return NextResponse.json({ message: "numPadInputData not found" }, { status: 404 })
     }
 

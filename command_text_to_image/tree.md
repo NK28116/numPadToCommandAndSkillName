@@ -22,7 +22,7 @@ src
 |    ├── components
 |    |    ├── CommandForm.tsx
 |    |    ├── CommandInput.tsx
-|    |    ├── ImageList.tsx
+|    |    ├── SkillName.tsx
 |    |    └── Search.tsx
 |    ├── favicon.ico
 |    ├── globals.css

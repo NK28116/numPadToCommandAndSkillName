@@ -1,36 +1,59 @@
-// src/components/CommandForm.tsx
 "use client"
 import React, { useState } from "react"
 import CommandInput from "@/src/app/components/CommandInput"
 import ImageList from "@/src/app/components/ImageList"
 import { generateImageList, ImageItem } from "@/src/app/util/imageUtl"
 import Search from "@/src/app/components/Search"
+import SkillNameList from "@/src/app/components/SkillNameList"
 
 const CommandForm: React.FC = () => {
   const [imageItems, setImageItems] = useState<ImageItem[]>([])
+  const [selectedCharacter, setSelectedCharacter] = useState<string>("")
   const [skillNames, setSkillNames] = useState<string[]>([])
 
-  const handleConvert = (combo: string) => {
-    //combo=command1--command2
-    //commandArray=[command1,command2]
+  const handleConvert = async (combo: string) => {
     const commandArray = combo.split("--")
     const images: ImageItem[] = []
-    commandArray.forEach((command) => {
+    const fetchedSkillNames: string[] = []
+
+    for (const command of commandArray) {
+      // 画像生成処理
       images.push(...generateImageList(command))
-    })
-    images.pop()
+
+      // APIリクエストでSkillNameを取得
+      if (selectedCharacter) {
+        try {
+          const response = await fetch(`/api/${selectedCharacter}/${command}`)
+          if (response.ok) {
+            const data = await response.json()
+            const skillName = data[0]?.SkillName || "Skill not found"
+            fetchedSkillNames.push(skillName)
+          } else {
+            fetchedSkillNames.push("Skill not found")
+          }
+        } catch (error) {
+          fetchedSkillNames.push("Skill not found")
+        }
+      }
+    }
+
+    // 全てのリクエストが完了した後に状態を更新
+    setSkillNames(fetchedSkillNames)
     setImageItems(images)
+    console.log(fetchedSkillNames)
   }
 
   const handleClear = () => {
     setImageItems([])
+    setSkillNames([])
   }
 
   return (
     <div>
-      <Search />
+      <Search onCharacterSelect={setSelectedCharacter} />
       <CommandInput onConvert={handleConvert} onClear={handleClear} />
       <ImageList items={imageItems} />
+      <SkillNameList skillNameList={skillNames} />
     </div>
   )
 }

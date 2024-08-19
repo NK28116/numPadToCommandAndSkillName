@@ -1,35 +1,38 @@
+// ContinentPage.tsx
+
 "use client"
 
 import { useEffect, useState } from "react"
 import { StreetFighter6 } from "@prisma/client"
+import SkillName from "@/src/app/components/SkillNameList" // インポートを追加
 
-export default function ContinentPage() {
-  const characterName = "All"
+export default function TestPage() {
   const [characterSkillData, setCharacterSkillData] = useState<StreetFighter6[]>([])
   const [selectedCharacter, setSelectedCharacter] = useState<string>("")
-  const [filteredData, setFilteredData] = useState<StreetFighter6[]>([])
+  const [inputNumPad, setInputNumPad] = useState<string>("")
+  const [skillName, setSkillName] = useState<string>("")
 
+  // キャラクターデータの取得
   useEffect(() => {
     const getCharacterSkillData = async () => {
-      const res = await fetch(`/api/${characterName}`)
-      const data = await res.json()
-      setCharacterSkillData(data)
+      if (selectedCharacter) {
+        const res = await fetch(`/api/${selectedCharacter}`)
+        const data = await res.json()
+        setCharacterSkillData(data)
+      }
     }
+    getCharacterSkillData()
+  }, [selectedCharacter])
 
-    if (characterName) {
-      getCharacterSkillData()
+  // numPadInputに基づいてSkillNameを検索
+  useEffect(() => {
+    const matchedSkill = characterSkillData.find((character) => character.numPadInput === inputNumPad)
+    if (matchedSkill) {
+      setSkillName(matchedSkill.SkillName)
+    } else {
+      setSkillName("")
     }
-  }, [characterName])
-
-  function handleSearch() {
-    if (selectedCharacter) {
-      const filtered = characterSkillData.filter((character) => character.CharacterName === selectedCharacter)
-      setFilteredData(filtered)
-    }
-  }
-  // 重複しないキャラクター名のリストを生成
-  const uniqueCharacters = Array.from(new Set(characterSkillData.map((character) => character.CharacterName)))
-  console.log(filteredData.map((character) => character.SkillName))
+  }, [inputNumPad, characterSkillData])
 
   return (
     <>
@@ -42,31 +45,29 @@ export default function ContinentPage() {
           <option value="" disabled>
             Select a character
           </option>
-          {uniqueCharacters.map((characterName, index) => (
-            <option key={index} value={characterName}>
-              {characterName}
-            </option>
-          ))}
+          {/* 重複しないキャラクター名のリスト */}
+          {Array.from(new Set(characterSkillData.map((character) => character.CharacterName))).map(
+            (characterName, index) => (
+              <option key={index} value={characterName}>
+                {characterName}
+              </option>
+            ),
+          )}
         </select>
-        <button onClick={handleSearch}>Set</button>
       </div>
-      <div>-----</div>
+
+      {/* numPadInputの入力フォーム */}
       <div>
-        {filteredData.length > 0 ? (
-          filteredData.map((character) => (
-            <div key={character.ID}>
-              <p>Name: {character.CharacterName}</p>
-              <p>numPadInput: {character.numPadInput}</p>
-              <p>SkilName: {character.SkillName}</p>
-              <p>Command: {character.commandImagePath}</p>
-              <p>HitParts: {character.HitParts}</p>
-              <p>-------</p>
-            </div>
-          ))
-        ) : (
-          <p>No character selected</p>
-        )}
+        <input
+          className="border"
+          placeholder="Enter numPadInput"
+          value={inputNumPad}
+          onChange={(e) => setInputNumPad(e.target.value)}
+        />
       </div>
+
+      {/* SkillNameコンポーネントの使用 */}
+      <SkillName skillNameList={skillName} />
     </>
   )
 }

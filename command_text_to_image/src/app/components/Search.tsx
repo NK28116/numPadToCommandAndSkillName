@@ -1,13 +1,15 @@
 "use client"
-
 import { useEffect, useState } from "react"
 import { StreetFighter6 } from "@prisma/client"
 
-export default function ContinentPage() {
+type SearchProps = {
+  onCharacterSelect: (character: string) => void
+}
+
+export default function Search({ onCharacterSelect }: SearchProps) {
   const characterName = "All"
   const [characterSkillData, setCharacterSkillData] = useState<StreetFighter6[]>([])
   const [selectedCharacter, setSelectedCharacter] = useState<string>("")
-  const [filteredData, setFilteredData] = useState<StreetFighter6[]>([])
 
   useEffect(() => {
     const getCharacterSkillData = async () => {
@@ -16,57 +18,34 @@ export default function ContinentPage() {
       setCharacterSkillData(data)
     }
 
-    if (characterName) {
-      getCharacterSkillData()
-    }
+    getCharacterSkillData()
   }, [characterName])
 
-  function handleSearch() {
-    if (selectedCharacter) {
-      const filtered = characterSkillData.filter((character) => character.CharacterName === selectedCharacter)
-      setFilteredData(filtered)
-    }
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected = e.target.value
+    setSelectedCharacter(selected)
+    onCharacterSelect(selected) // 親コンポーネントに選択したキャラクターを通知
   }
+
   // 重複しないキャラクター名のリストを生成
   const uniqueCharacters = Array.from(new Set(characterSkillData.map((character) => character.CharacterName)))
-  console.log(filteredData.map((character) => character.SkillName))
 
   return (
-    <>
-      <div className="relative flex flex-1 flex-shrink-0">
-        <select
-          className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-          onChange={(e) => setSelectedCharacter(e.target.value)}
-          value={selectedCharacter}
-        >
-          <option value="" disabled>
-            Select a character
+    <div className="relative flex flex-1 flex-shrink-0">
+      <select
+        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+        onChange={handleSelectChange}
+        value={selectedCharacter}
+      >
+        <option value="" disabled>
+          Select a character
+        </option>
+        {uniqueCharacters.map((characterName, index) => (
+          <option key={index} value={characterName}>
+            {characterName}
           </option>
-          {uniqueCharacters.map((characterName, index) => (
-            <option key={index} value={characterName}>
-              {characterName}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleSearch}>Set</button>
-      </div>
-      <div>-----</div>
-      <div>
-        {filteredData.length > 0 ? (
-          filteredData.map((character) => (
-            <div key={character.ID}>
-              <p>Name: {character.CharacterName}</p>
-              <p>numPadInput: {character.numPadInput}</p>
-              <p>SkilName: {character.SkillName}</p>
-              <p>Command: {character.commandImagePath}</p>
-              <p>HitParts: {character.HitParts}</p>
-              <p>-------</p>
-            </div>
-          ))
-        ) : (
-          <p>No character selected</p>
-        )}
-      </div>
-    </>
+        ))}
+      </select>
+    </div>
   )
 }
