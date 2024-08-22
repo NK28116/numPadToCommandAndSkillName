@@ -1314,7 +1314,7 @@ import prisma from '../../prisma/client';
 2. ハンドラ関数の定義
 
 ```typescript
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) 
 ```
 
 - この関数がAPIリクエストを処理するメインのエクスポートです。
@@ -1324,7 +1324,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
  3. HTTPメソッドのチェック
 
 ```typescript
-  if (req.method === 'GET') {
+  if (req.method === 'GET') 
 ```
 
 - リクエストのHTTPメソッドが`GET`であるかどうかを確認します。ここでは、`GET`メソッドのリクエストのみを処理します。
@@ -1359,7 +1359,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } catch (error) {
       res.status(500).json({ error: 'Server error' });
     }
-  }
+  
 ```
 
 - `prisma.user.findUnique`を使用して、`email`に一致するユーザーをデータベースから検索します。
@@ -1373,7 +1373,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   else {
     res.status(405).json({ error: 'Method not allowed' });
   }
-}
+
 ```
 
 - `GET`メソッド以外のリクエストが来た場合、405ステータスコード（Method Not Allowed）とエラーメッセージを返します。
