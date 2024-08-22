@@ -1,4 +1,3 @@
-// src/components/SkillNameList.tsx
 import React from "react"
 
 type SkillNameListProps = {
@@ -7,17 +6,7 @@ type SkillNameListProps = {
 
 const SkillNameList: React.FC<SkillNameListProps> = ({ skillNameList }) => {
   return (
-    <div>
-      {skillNameList.length > 0 ? (
-        skillNameList.map((skillName, index) => (
-          <div key={index}>
-            <p>Skill Name: {skillName}</p>
-          </div>
-        ))
-      ) : (
-        <p>No skills found</p>
-      )}
-    </div>
+    <div>{skillNameList.length > 0 ? <p>Skill Name: {skillNameList.join(" -> ")}</p> : <p>No skills found</p>}</div>
   )
 }
 
