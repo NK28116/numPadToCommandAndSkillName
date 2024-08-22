@@ -46,6 +46,9 @@ const CommandForm: React.FC = () => {
       setSkillNames([fetchedSkillNames[0]])
     }
 
+    // 画像リストを状態に設定
+    setImageItems(images)
+
     console.log("fetched", fetchedSkillNames)
     console.log("skillnames", skillNames)
   }
