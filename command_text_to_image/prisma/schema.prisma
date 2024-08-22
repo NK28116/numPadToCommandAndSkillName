@@ -14,6 +14,8 @@ model StreetFighter6 {
   SkillName        String      @unique
   commandImagePath String
   HitParts         HitPartEnum
+
+  @@unique( fields:[CharacterName,numPadInput],name: "CommandName")
 }
 
 enum HitPartEnum {
