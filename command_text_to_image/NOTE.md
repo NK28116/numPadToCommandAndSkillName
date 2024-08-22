@@ -1220,6 +1220,66 @@ IDは自動で入ってくれるので定義を決めなくていい
 
 - skillNamesの数が合わない
 
+
+
+## 2024/08/22
+- skilNameの数を調整
+
+
+- typeとinterfaceの違い
+`type` と `interface` の両方は、TypeScript でオブジェクトの形状を定義するために使用されますが、いくつかの違いがあります。
+
+### 1. **宣言の仕方**
+   - **`type`**: 一般的に型エイリアスを作成します。基本的な型の別名や、複雑な型の合成にも使用できます。
+     ```typescript
+     type SkillNameListProps = {
+       skillNameList: string[]
+     }
+     ```
+   - **`interface`**: オブジェクトの構造を定義します。クラスやオブジェクトの契約（形状）を指定するために使用されます。
+     ```typescript
+     interface SkillNameListProps {
+       skillNameList: string[]
+     }
+     ```
+
+### 2. **拡張性**
+   - **`type`**: 複数の型を組み合わせることができますが、`type` 同士を直接拡張することはできません。代わりにユニオン型や交差型を使用します。
+     ```typescript
+     type SkillNameListProps = {
+       skillNameList: string[]
+     } & SomeOtherProps
+     ```
+   - **`interface`**: `interface` は他の `interface` を拡張することができ、複数の `interface` を継承することも可能です。
+     ```typescript
+     interface ExtendedSkillNameListProps extends SkillNameListProps {
+       additionalProp: string
+     }
+     ```
+
+### 3. **合成**
+   - **`type`**: ユニオン型や交差型を使用して、複雑な型を合成できます。例えば、`type` でリテラル型や他の `type` を合成することができます。
+     ```typescript
+     type StringOrNumber = string | number
+     type DetailedProps = SkillNameListProps & SomeOtherProps
+     ```
+   - **`interface`**: 型の合成には `extends` キーワードを使用します。
+
+### 4. **用途**
+   - **`type`**: より柔軟で、プリミティブ型、タプル、ユニオン型など、さまざまな型に対して使用できます。
+   - **`interface`**: 主にオブジェクトの形状やクラスの定義に使用されます。
+
+### 5. **実装の違い**
+   - **`interface`**: クラスやオブジェクトが `interface` を実装することができます。
+   - **`type`**: `type` はクラスの実装には使えません。
+
+### 結論
+- **`interface`**: 主にオブジェクトの形状を定義したり、複数のインターフェースを拡張する際に使います。
+- **`type`**: より柔軟に型を表現したい場合や、ユニオン型や交差型を利用する際に使用します。
+
+どちらを使うかは、具体的な要件やコードベースのスタイルに依存します。
+
+
 ---
 ## prisma
 
