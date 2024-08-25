@@ -1,3 +1,10 @@
+//numPadInput:[2,3,6,HP]
+//imagePath:[/public/direction/2.png,/public/direction/3.png,/public/direction/6.png,/public/attack/HP.png]
+
+//|ID |title |characterName|numPadInput|skillName|commandImagePath|startUp|damage|guardRecovery|recovery|hitParts
+//|Int|String|String|InputPicture.numPadInput[]|String|InputPicture.commandImagePath[]|Int|Int|Int|Int|hitPartEnum|
+//|2|SF6|Ken|[2,3,6,HP]|大昇竜拳|[/public/direction/2.png,/public/direction/3.png,/public/direction/6.png,/public/attack/HP.png]|10|10|5|5|High
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,19 +14,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model StreetFighter6 {
-  ID               Int         @id @default(autoincrement())
-  CharacterName    String
-  numPadInput      String
-  SkillName        String      @unique
-  commandImagePath String
-  HitParts         HitPartEnum
+//TODO:画像をあたらしくつくるのはめんどくさいので入力コマンドをまとめられるDB設計ができたらそっちに移行
+//prismaの使用上，配列で扱うのは無理
 
-  @@unique( fields:[CharacterName,numPadInput],name: "CommandName")
+model StreetFighter6 {
+  ID                Int          @id @default(autoincrement())
+  characterName     String       // キャラ名
+  numPadInput       String      // キー入力
+  skillName         String         @unique // 技名
+  commandImagePath  String // コマンド画像
+  startUp           Int          // 前隙
+  damage            Int          // ダメージ
+  guardRecovery     Int          // ガード硬直
+  recovery          Int          // 後隙
+  hitParts          hitPartEnum  // 攻撃部位
 }
 
-enum HitPartEnum {
+enum hitPartEnum {
   High
   Middle
   Low
+  Throw
+  Bullet
 }
+
