@@ -1313,6 +1313,9 @@ example
 
 - prismaは配列を参照できないんか．これはORM全体に共通するのかそれともprismaだけなんか？
 
+- commandInputは 236HP--236MP を236HP，236MP に分割して, それぞれ2=./public/2.png， 3=./public/3.png みたいにそれぞれ変換して出力している
+- 配列はrelationかけれないはずだったので結局できない
+
 ---
 ## prisma
 
@@ -1352,7 +1355,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
  3. HTTPメソッドのチェック
 
 ```typescript
-  if (req.method === 'GET') 
+  if (req.method === 'GET') {}
 ```
 
 - リクエストのHTTPメソッドが`GET`であるかどうかを確認します。ここでは、`GET`メソッドのリクエストのみを処理します。
@@ -1398,7 +1401,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 6. 非対応メソッドのハンドリング
 
 ```typescript
-  else {
+if(){}  else {
     res.status(405).json({ error: 'Method not allowed' });
   }
 

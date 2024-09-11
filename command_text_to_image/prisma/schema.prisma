@@ -16,7 +16,7 @@ datasource db {
 
 //TODO:画像をあたらしくつくるのはめんどくさいので入力コマンドをまとめられるDB設計ができたらそっちに移行
 //prismaの使用上，配列で扱うのは無理
-
+//numPadInput:[2,3,6] -> 波動 -> imagePath[]
 model StreetFighter6 {
   ID                Int          @id @default(autoincrement())
   characterName     String       // キャラ名
